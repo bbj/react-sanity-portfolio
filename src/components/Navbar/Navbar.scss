@@ -6,12 +6,13 @@
   align-items: center;
 
   padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.25); /* a bit transparent */
+  background: rgba(255, 255, 255, 0.25);
+  // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px); /* blur behind */
+  -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  position: fixed; /* stays on top */
-  z-index: 2; /* appear above the content */
+  position: fixed;
+  z-index: 2;
 }
 
 .app__navbar-logo {
@@ -19,12 +20,10 @@
   justify-content: flex-start;
   align-items: center;
 
-  /* SCSS: instead of repeating .app__navbar-logo img {, SCSS allow sub styling !!!*/
   img {
     width: 90px;
     height: 20px;
 
-    /* SCSS: media queries can be inside an element */
     @media screen and (min-width: 2000px) {
       width: 180px;
       height: 40px;
@@ -38,7 +37,7 @@
   justify-content: center;
   align-items: center;
 
-  list-style-type: none;
+  list-style: none;
 
   li {
     margin: 0 1rem;
@@ -46,7 +45,6 @@
 
     flex-direction: column;
 
-    /* circle above every <a> */
     div {
       width: 5px;
       height: 5px;
@@ -57,28 +55,118 @@
     }
 
     a {
-      /* using index.css :root { ... --gray-color: #6b7688; ... } */
       color: var(--gray-color);
-      text-decoration: none; /* remove underline */
+      text-decoration: none;
       flex-direction: column;
 
       text-transform: uppercase;
       font-weight: 500;
 
-      /* will take 0.3s to change color */
       transition: all 0.3s ease-in-out;
 
-      /* SCSS: no need to have a "a:hover" seperate tag ! */
       &:hover {
         color: var(--secondary-color);
       }
     }
 
-    /* every time we hover, the circle change from transparent to --secondary-color */
     &:hover {
       div {
         background: var(--secondary-color);
       }
     }
+  }
+
+  @media screen and (max-width: 900px) {
+    display: none;
+  }
+}
+
+.app__navbar-menu {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+
+  svg {
+    width: 70%;
+    height: 70%;
+    color: var(--white-color);
+  }
+
+  div {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+
+    padding: 1rem;
+
+    width: 80%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+
+    background: url("../../assets/bgWhite.png");
+    background-color: var(--white-color);
+    background-size: cover;
+    background-repeat: repeat;
+
+    /* top box shadow */
+    box-shadow: 0px 0px 20px rgba(168, 168, 168, 0.15);
+
+    svg {
+      width: 35px;
+      height: 35px;
+      color: var(--secondary-color);
+      margin: 0.5rem 1rem;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+
+      li {
+        margin: 1rem;
+
+        a {
+          color: var(--gray-color);
+          text-decoration: none;
+          font-size: 1rem;
+          text-transform: uppercase;
+          font-weight: 500;
+
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            color: var(--secondary-color);
+          }
+        }
+      }
+    }
+
+    @media screen and (min-width: 900px) {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    display: none;
   }
 }
